@@ -30,10 +30,45 @@ public class UserService {
     }
 
     public User createUser(User newUser) {
+        // aa add creation date
         newUser.setToken(UUID.randomUUID().toString());
         newUser.setStatus(UserStatus.ONLINE);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
+
+    // add method for updating the user
+    public void updateUser(User user){
+        // Step 1: get user's id
+        public User getUserById(long id){
+            User obj = userRepository.findById(id).get();
+            return obj;
+        }
+        // Step 2: find user in the database based on his id
+        // Step 3: update his info using the new data (you need the setters) the info you update is DOB and USERNAME
+        userRepository.save(user);
+    }
+
+    // add method for login
+
+    public User getUserById(Long id){
+        return this.userRepository.findUserById(id);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
